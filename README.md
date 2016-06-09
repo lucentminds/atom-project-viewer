@@ -1,29 +1,13 @@
 # Project Viewer
 
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](http://commitizen.github.io/cz-cli/)
-[![apm version](https://img.shields.io/apm/v/project-viewer.svg?style=flat-square)](https://atom.io/packages/project-viewer/)
-[![apm downloads](https://img.shields.io/apm/dm/project-viewer.svg?style=flat-square)](https://atom.io/packages/project-viewer/)
-[![travis](https://travis-ci.org/jccguimaraes/atom-project-viewer.svg?branch=refactor)](https://travis-ci.org/jccguimaraes/atom-project-viewer)
 
-This package was driven by other packages that manage projects but didn't gave me what I really wanted for my day to basis setup, so I created this package.
+Based on https://github.com/jccguimaraes/atom-project-viewer v0.2.34. At about
+v0.3.2 the project viewer stopped using the project-viewer.json file that I
+created a project watcher/builder around so I created this project from the last
+working version I'm sure was working. This is for my own private use so I do NOT
+intend on updating. Thanks to jccguimaraes for creating this as it's really 
+useful.
 
-Please send comments, issues, bugs, features and other stuff.
-
-![Project Manager](https://raw.github.com/jccguimaraes/atom-project-viewer/master/project-viewer.gif)
-
-### Projects that inspired me!
-
-* [tree-view](https://atom.io/packages/tree-view) from *atom*.
-* [project-manager](https://atom.io/packages/project-manager) from *danielbrodin*.
-* [project-sidebar](https://atom.io/packages/project-sidebar) from *bripkens*.
-
-### Installation
-
-Simply run the following command:
-```sh
-apm install project-viewer
-```
-Or find the package in **Atom → Settings → Install** and search for ***project-viewer***.
 
 ### Settings
 
@@ -100,21 +84,3 @@ This is a resume of all the features of the package
 * Keep state of project folders.
 * Drag projects from a group to another one.
 
-### Future features
-
-* Add travis and stuff alike.
-* Improve performance and stability.
-* Sanitize user inputs (allow only specific chars and stuff).
-* Add unit tests (on refactor)
-* Others (*please contribute with ideas*).
-
-### Future
-
-This project has increased a lot and fast since my first release and I have decided to make an huge refactor on the code so that it can follow as much as closer to Atom's guidelines and ideals.
-Until now, just closing some issues and finishing the features I had planned earlier.
-
-Once again, I am opened for new ideas and features. Give me a shout.
-
-### Other
-
-You can follow me on [Twitter](https://twitter.com/jccguimaraes)
