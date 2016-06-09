@@ -1,172 +1,155 @@
 @import "ui-variables";
-@import './devicons';
-@import "./helpers";
 
-project-viewer {
-	display: flex;
-	flex-direction: column;
-	flex: 1;
+@project-viewer-header-text-size: 18px;
 
-	width: @project-viewer-width;
-	background-color: @tree-view-background-color;
-	font-size: @font-size;
-	font-family: @font-family;
-	box-sizing: content-box;
+div[is="project-viewer-view"] {
 
-	border-left: 1px @pane-item-border-color solid;
+    -webkit-user-select: none;
+    user-select: none;
+    height: 100%;
+    cursor: default;
+    min-width: 100px;
+    width: 200px;
 
-	transition-property: width, opacity;
-	transition-duration: @project-viewer-transition-duration;
+    .heading {
+        color: @text-color-highlight;
+        font-size: @project-viewer-header-text-size;
+        background:  @pane-item-background-color;
+        border-bottom: 1px @pane-item-border-color solid;
+        margin-top: 0px;
+        margin-bottom: 5px;
+        padding:15px;
+    }
 
-	&.autohide:not(:focus):not(:hover) {
-		width: @project-viewer-auto-width;
-		opacity: 0;
-	}
+    // GROUPS VIEW
+    ul[is="groups-view"] {
+        width: calc(~"100% - " @component-padding*2);
+        height: calc(~"100% - " @component-padding*2 + @component-line-height);
+        overflow: auto;
+        position: absolute;
+        padding-bottom: 40px;
+    }
 
-	&:focus,
-	&:hover {
-		width: @project-viewer-width;
-		transition: width @project-viewer-transition-duration;
+    ul[is="groups-view"] .background-message li {
+        transition: opacity 0.3s ease-in 0s;
+        font-size: 0.4em;
+        color: @text-color-subtle;
+    }
 
-		pv-header {
-			color: @project-viewer-active-state;
-			transition: color @project-viewer-transition-duration;
-		}
-	}
+    // GROUP VIEW
+    li[is="group-view"] {
+        transition: opacity 0.3s ease-out 0s;
+    }
 
-	&::selection {
-		background-color: transparent;
-	}
+    li[is="group-view"] .list-item {
+        cursor: pointer;
+    }
+    li[is="group-view"] .list-item .group-number-projects {
+        cursor: pointer;
+        margin: 0 5px 0 0;
+    }
 
-	pv-header {
-		background:  @pane-item-background-color;
- 		border-bottom: 1px @pane-item-border-color solid;
- 		margin-top: 0px;
- 		margin-bottom: 5px;
-		color: @project-viewer-topic-color;
-		font-size: @project-viewer-topic-size;
-		padding: @component-padding;
+    // PROJECT VIEW
+    li[is="project-view"].list-item {
+        cursor: pointer;
+    }
+    li[is="project-view"].list-item span {
+        transition: color 0.3s ease-out 0s;
+    }
+    li[is="project-view"].list-item.chosen {
+        transition: color 0.3s ease-in 0s;
+        border-left: 2px solid @text-color-success;
+        // color: @text-color-success; //@text-color-highlight;
+    }
+    li[is="project-view"].list-item:hover span {
+        transition: color 0.3s ease-in 0s;
+        color: @text-color-highlight;
+    }
+    li[is="project-view"].list-item.chosen span {
+        margin-left: -2px;
+    }
 
-		width: 100%;
+    .icon {
+        text-align: center;
+        margin-right: 4px;
+    }
 
-		animation-duration: @project-viewer-animation-duration;
-		animation-name: fadeIn;
-		transition: all @project-viewer-transition-duration;
-
-		&::selection {
-			background-color: transparent;
-		}
-
-		&.autohide {
-			display: none;
-		}
-	}
-
-	li[is="pv-list-nested-item"].list-nested-item {
-		cursor: pointer;
-
-		> .list-item {
-			pointer-events: none;
-		}
-	}
-
-	li[is="pv-list-item"].list-item {
-		width: 100%;
-		cursor: pointer;
-		display: block;
-		transition: color @project-viewer-transition-duration ease-in 0s;
-
-		&:hover {
-			color: @project-viewer-selected-state;
-			transition: color @project-viewer-transition-duration ease-out 0s;
-		}
-
-		&:hover::before {
-			visibility: visible;
-			transform: scaleY(1);
-		}
-
-		&::before {
-			position: absolute;
-			left: 0;
-			right: 0;
-			height: @component-line-height;
-			content: "";
-			width: 2px;
-			background-color: @project-viewer-active-state;
-			visibility: hidden;
-			transform: scaleY(0);
-			transition: transform @project-viewer-transition-duration, visibility @project-viewer-transition-duration;
-		}
-
-		&.active {
-			color: @project-viewer-selected-state;
-		}
-
-		&.disabled {
-			display: inline-flex;
-			cursor: not-allowed;
-			color: @text-color-subtle;
-			text-decoration: line-through;
-		}
-
-		span {
-			pointer-events: none;
-		}
-	}
-
-	ul[is="pv-list-tree"].has-collapsable-children {
-		padding: 0 @component-icon-padding;
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		flex: 1;
-		width: 100%;
-		overflow: auto;
-	}
-
-	ul[is="pv-list-tree"].has-collapsable-children,
-	li[is="pv-list-nested-item"],
-	li[is="pv-list-item"] {
-		transition: all @project-viewer-transition-duration ease-out 0s;
-		&.over {
-			opacity: 0.5;
-		}
-	}
+    .icon-none::before {
+        font-family: 'Octicons Regular';
+        font-weight: normal;
+        font-style: normal;
+        display: inline-block;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        text-decoration: none;
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+        content: "\f00a";
+        color: @text-color-info;
+    }
 }
 
-pv-create-modal,
-pv-update-modal,
-pv-remove-modal,
-pv-remove-quick-modal {
-	hr {
-		border-color: @tool-panel-border-color;
-	    margin: 5px 0;
-	}
+// INPUT VIEW
+div[is="input-selection-view"] atom-text-editor[mini] {
+    background-color: @pane-item-background-color;
+    border-color:@pane-item-border-color;
+    color: @text-color;
+}
 
-	.pv-list-group,
-	.pv-icons {
-		cursor: pointer;
-		max-height: 100px;
-		overflow-y: scroll;
-		overflow-x: hidden;
+atom-panel-container.modal {
+    // ICON SELECTION VIEW
+    div[is="icon-selection-view"] .preview-icon {
+        margin-left: 5px;
+    }
 
-		.btn{
-			width: 32%;
+    div[is="group-selection-view"],
+    div[is="project-selection-view"],
+    div[is="icon-selection-view"],
+    div[is="paths-selection-view"],
+    div[is="project-viewer-select"] {
+        select {
+            background-color: @pane-item-background-color;
+            border-color:@pane-item-border-color;
+            color: @text-color;
+            cursor: pointer;
+        }
+    }
 
-			&:before{
-				float: left;
-				width: 20px;
-			}
-		}
-	}
+    div[is="add-project-view"],
+    div[is="remove-project-view"],
+    div[is="edit-project-view"],
+    div[is="add-group-view"],
+    div[is="edit-group-view"],
+    div[is="remove-group-view"] {
 
-	.pv-label {
-		color: @text-color-highlight;
-		font-weight: bold;
-	}
+        position: relative;
 
-	.inset-panel {
-		margin-bottom: @component-padding;
-	}
+        hr {
+            border-width: thin;
+            border-color: @input-background-color;
+        }
+
+        h3 {
+            color: @text-color-info;
+        }
+
+        input[type="color"] {
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            position: relative;
+            top: 5px;
+            left: 5px;
+        }
+        input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+        input[type="color"]::-webkit-color-swatch {
+            border: none;
+        }
+    }
 }

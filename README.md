@@ -1,23 +1,24 @@
-# README
-[![Join the chat at https://gitter.im/jccguimaraes/atom-project-viewer](http://img.shields.io/badge/gitter-join%20chat%20%E2%86%92-brightgreen.svg?style=flat-square)](https://gitter.im/jccguimaraes/atom-project-viewer?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
+# Project Viewer
+
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](http://commitizen.github.io/cz-cli/)
 [![apm version](https://img.shields.io/apm/v/project-viewer.svg?style=flat-square)](https://atom.io/packages/project-viewer/)
 [![apm downloads](https://img.shields.io/apm/dm/project-viewer.svg?style=flat-square)](https://atom.io/packages/project-viewer/)
+[![travis](https://travis-ci.org/jccguimaraes/atom-project-viewer.svg?branch=refactor)](https://travis-ci.org/jccguimaraes/atom-project-viewer)
 
 This package was driven by other packages that manage projects but didn't gave me what I really wanted for my day to basis setup, so I created this package.
 
-![pv_cgp_01](https://cloud.githubusercontent.com/assets/14871650/15876484/8bfcbc5a-2d05-11e6-90c0-87a38020d78c.gif)
+Please send comments, issues, bugs, features and other stuff.
 
-![pv_cgp_02](https://cloud.githubusercontent.com/assets/14871650/15876485/8c13a3b6-2d05-11e6-8f96-bb4ab8acfe9a.gif)
-
+![Project Manager](https://raw.github.com/jccguimaraes/atom-project-viewer/master/project-viewer.gif)
 
 ### Projects that inspired me!
+
 * [tree-view](https://atom.io/packages/tree-view) from *atom*.
 * [project-manager](https://atom.io/packages/project-manager) from *danielbrodin*.
 * [project-sidebar](https://atom.io/packages/project-sidebar) from *bripkens*.
 
 ### Installation
+
 Simply run the following command:
 ```sh
 apm install project-viewer
@@ -25,28 +26,95 @@ apm install project-viewer
 Or find the package in **Atom → Settings → Install** and search for ***project-viewer***.
 
 ### Settings
+
 Settings | Type | Description | Default
 ---------|------|-------------|--------
-`startupVisibility` | `Boolean` | Define if you want **project-viewer** to be visible on startup. | `false`
-`statusBarVisibility` | `Boolean` | Define if you want **project-viewer** to show active *group* and *project*. | `false`
-`autohide` | `Boolean` | Ability to autohide project viewer. | `false`
-`panelPosition` | `String` | You can set the place of the viewer, to the most right position or to the most left position. | `Right`
-`hideHeader` | `Boolean` | Hide header (for more space). | `false`
-`githubToken` | `String` | Your personal and private GitHub token. This is useful if you want to save/backup your projects to a remote place (as a gist). *note*: keep in mind that this token should have only permissions to `rw` gists as well as that any package can access this token string. | `''`
-`convertOldData` | `Boolean` | If you came from a version previous to <code>0.3.0</code>, you most probably have the old data in the atom folder. By default it will always check on startup for this data and if the new does not exist, it will convert to the new data schema. | `true`
+`startUp` | `boolean` | Defines if project viewer should be opened from the start of Atom. | false
+`openBuffers` | `boolean` | Every time you open a file that's relative to any of the paths of the project, it will be buffered until you close it manually. Every time you switch projects, they will be restored (setting to **true** will **close** none project files!) | false
+`foldersCollapsed` | `boolean` | Defines if folders should always be collapsed when switching/opening the project. | false
+`onlyGroupColors` | `boolean` | If set to true, will only color the group and not the projects. | false
 
-## Features & Future Features
-Please read the `CHANGE LOG` to have a more insight on all the features existing and planned.
+### File Configuration
 
-## Contributors
-Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+A JSON file that contains an array of groups and projects (if not present, it will be created automatically).
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-| [<img src="https://avatars.githubusercontent.com/u/14871650?v=3" width="100px;"/><br /><sub>João Guimarães</sub>](https://github.com/jccguimaraes)<br />💁 [🐛](https://github.com/jccguimaraes/atom-project-viewer/issues?q=author%3Ajccguimaraes) [💻](https://github.com/jccguimaraes/atom-project-viewer/commits?author=jccguimaraes) 🎨 [📖](https://github.com/jccguimaraes/atom-project-viewer/commits?author=jccguimaraes) 👀 | [<img src="https://avatars.githubusercontent.com/u/1093709?v=3" width="100px;"/><br /><sub>Hans Koch</sub>](https://github.com/Hammster)<br />[💻](https://github.com/jccguimaraes/atom-project-viewer/commits?author=Hammster) |
-| :---: | :---: |
-<!-- ALL-CONTRIBUTORS-LIST:END -->
+```js
+{
+    "groups": [],
+    "projects": []
+}
+```
 
-This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
+##### Defining a group at this moment is as simple as:
+
+```js
+{
+    "name": "my-group",
+    "icon": "icon-octicons",
+    "expanded": false,
+    "color": "#fafafa"
+}
+```
+Setting | Type | Require | Description
+--------|------|---------|------------
+`name` | String | true | The name of the group.
+`icon` | String | optional | An icon showing next to the group name. As listed from Atom's octicons set.
+`expanded` | Boolean | optional | Sets if group should be expanded from the start.
+`color` | String | optional | Sets the group and it's child project color (only accepts hex strings).
+
+##### Defining a project is a little bit more complex:
+
+```js
+{
+	"name": "my-project",
+    "group": "my-group",
+	"paths": {
+		"absolute-path-to-folder-1": "a-stringified-object-with-folder-states",
+		"absolute-path-to-folder-2": "a-stringified-object-with-folder-states"
+	},
+	"buffers": [
+		"absolute-path-file"
+	]
+}
+```
+
+Defining a project at this moment is a little bit more complex:
+
+Setting | Type | Require | Description
+--------|------|---------|------------
+`name` | String | true | The name of the project.
+`group` | String | optional | The name of the group which this project belongs to. If none, it will be grouped in the ungrouped projects.
+`paths` | Object | optional | An object which keys are the project folders to show in the *tree view* and their values are the state of it's children folders (expanded or collapsed).
+`buffers` | Array | optional | An array of files that were opened before closing the project/Atom or switching to another project.
+
+### Features
+
+This is a resume of all the features of the package
+
+* Context menu for adding, removing and editing groups and projects.
+* Icons in groups.
+* Set custom color for a group and it's child projects.
+* Expanding and collapsing groups.
+* Group ungrouped projects. *(not yet)*.
+* Keep opened files when switching between projects. *(currently buggy)*.
+* Keep state of project folders.
+* Drag projects from a group to another one.
+
+### Future features
+
+* Add travis and stuff alike.
+* Improve performance and stability.
+* Sanitize user inputs (allow only specific chars and stuff).
+* Add unit tests (on refactor)
+* Others (*please contribute with ideas*).
+
+### Future
+
+This project has increased a lot and fast since my first release and I have decided to make an huge refactor on the code so that it can follow as much as closer to Atom's guidelines and ideals.
+Until now, just closing some issues and finishing the features I had planned earlier.
+
+Once again, I am opened for new ideas and features. Give me a shout.
 
 ### Other
+
 You can follow me on [Twitter](https://twitter.com/jccguimaraes)

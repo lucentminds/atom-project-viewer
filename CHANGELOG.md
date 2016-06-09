@@ -1,48 +1,143 @@
-# Change Log
-All notable changes to this project will be documented in this file.
-This project adheres to [Semantic Versioning](http://semver.org/).
+## 0.2.32
+* closes issue #33
+* closes issue #34
+* closes issue #35
 
-## [Unreleased]
-- Sort clients, groups and projects by natural position or alphabetically ([#21](https://github.com/jccguimaraes/atom-project-viewer/issues/21));
-- Elevate current `atom.project.getPaths()` to a project ([#26](https://github.com/jccguimaraes/atom-project-viewer/issues/26));
-- Resizable panel (as a pane instead?) *(investigate)* ([#37](https://github.com/jccguimaraes/atom-project-viewer/issues/37));
-- Validate if root path is a git repository and initialize it;
-- Clear saved project state (this can get above 1Mb of size);
-- Keybindings for cycling between projects ([#22](https://github.com/jccguimaraes/atom-project-viewer/issues/22));
+## 0.2.31
+* bug fixes
 
-## [0.3.2] -2016-07-08
-### Fixed
-- Fixed `SelectView` when no projects were available;
+## 0.2.30
+* closes issue #23
 
-## [0.3.1] -2016-07-08
-### Changed
-- Moved `atom-space-pen-views` from `devDependencies` to `dependencies`;
+## 0.2.29
+* closes issue #12
 
-## [0.3.0] -2016-07-08
-### Added
-- SelectView Component *(from atom-space-pen)* `ctrl-alt-t`;
-- Autohide sidebar component ([#27](https://github.com/jccguimaraes/atom-project-viewer/issues/27));
-- Visually disabled projects that have no paths;
-- Save database file into a private *GitHub* gist;
-- Convert existing/old database file to the new schema;
-- Current project on status bar ([#22](https://github.com/jccguimaraes/atom-project-viewer/issues/22));
-- Added devicons to enhace icons ([#41](https://github.com/jccguimaraes/atom-project-viewer/issues/41));
-### Changed
-- Sidebar component;
-- Organize by client and/or group and/or project (3 levels) ([#25](https://github.com/jccguimaraes/atom-project-viewer/issues/25));
-- Toggle PV state `ctrl-alt-v`;
-- Add Clients, Groups and Projects (menu and context-menu);
-- Remove Clients, Groups and Projects (menu and context-menu);
-- Update Clients, Groups and Projects (context-menu only);
-- Drag & Drop workflow;
-### Deprecated
-- None;
-### Removed
-- Groups/Projects Colors;
-- Update Clients, Groups and Projects from menu;
-- Update database folder (you can now backup as a private *Gist*);
-### Fixed
-- Project state (workspace / files, history and tree-view package);
-- Project configuration now lives on atom's internal storage folder;
-### Security
-- None;
+## 0.2.28
+* closes issue #19
+
+## 0.2.27
+* first attempt to close issue #19
+
+## 0.2.26
+* Feature implemented: drag&drop projects from one group to another (thanks to @canastro)
+* fixed issue #17 - removed some leftovers
+* fixed issue #11 - improved states reference and also a bug when multiple paths existed
+* fixed a typo on config
+
+## 0.2.25
+* hopefully closes issue #16 and #12 (although this changing colors will probably not work on windows until a permanent solution)
+
+## 0.2.24
+* hanging group name would not reflex on the child projects
+
+## 0.2.23
+* Fixing a typo
+
+## 0.2.22
+* Fixing other issues
+
+## 0.2.21
+* Fixing issue #12 when a query for the stylesheet did not return an actual stylesheet object
+
+## 0.2.20
+* Added previous changelog and fixed README tables
+
+## 0.2.19
+* Bug fix related to buffers paths and a string in the constants
+
+## 0.2.18
+* Bug fix related to buffers
+
+## 0.2.17
+* Bug fixes
+
+## 0.2.16
+* Bug fixes
+
+## 0.2.15
+* Bug fixes
+
+## 0.2.14
+* Bug fixes
+
+## 0.2.13
+* Edit groups and projects.
+* Coloring groups and projects (check settings for extra configuration).
+* Project folders state are now saved (check settings for extra configuration).
+* Changed the json file properties (will not affect the previous file - I hope...).
+
+## 0.2.12
+* Adding groups and projects got more sanitized.
+* If the name of group/project exists, it will not be created (Ability to add projects with same name in different groups).
+
+## 0.2.11
+* (Ongoing/continuing) fixing huge issues that have been created from the previous updates.
+* Fixed abrupt close of files that were not saved when changing projects (solution is a patch for now).
+
+## 0.2.10
+* (Ongoing/continuing) fixing huge issues that have been created from the previous updates.
+* Fixed issue when checking active project. [Issue #6](https://github.com/jccguimaraes/atom-project-viewer/issues/6).
+
+## 0.2.9
+* (Ongoing/continuing) fixing huge issues that have been created from the previous updates.
+
+## 0.2.8
+* (Ongoing) fixing huge issues that have been created from the previous updates.
+
+## 0.2.7
+* Removed some experimental trash.
+* Officially closed [Issue #4](https://github.com/jccguimaraes/atom-project-viewer/issues/4).
+
+## 0.2.6
+* Something wrong with the apm (crashed on publish).
+
+## 0.2.5
+* Saving copllapsed/expanded state for groups as well as fixed refreshing of all groups/projects after add/remove/edit groups/projects [Issue #4](https://github.com/jccguimaraes/atom-project-viewer/issues/4).
+
+## 0.2.4
+* When adding a path to a project, if the name is empty, it will populate with the name of the folder of that path. [Issue #3](https://github.com/jccguimaraes/atom-project-viewer/issues/3)
+* Fixed remove path workflow.
+
+## 0.2.3
+* Added gif for package preview.
+
+## 0.2.2
+* Fixed deleting the file after each update. Sorry!!!!!! The file needed to change where it was. So hopefully you will not loose any more of your groups/projects.
+
+## 0.2.1
+* Removed a file that was wrongly added.
+
+## 0.2.0
+* A message display when no groups exist.
+* Improved the context menu on the right panel.
+* Small code improvements.
+* Buffering files (check settings to enable), may cause some lag on switching projects.
+* Improved the file writing workflow. Added as a promise for overlaping savings (was corrupting the projects.json).
+* Fixed clicking on the active project would switch to itself again.
+
+## 0.1.6
+* Refactored the main project structure.
+* UI tweaks on some components to have Atom's style guide.
+
+## 0.1.5
+* Added basic UI changes for the selected project
+
+## 0.1.4
+* Fixed an issue regarding inputs in the modal, changed to tag atom-text-editor instead of old input.
+* small updates on the README file.
+
+## 0.1.3
+* Fixed an issue related with the config file.
+
+## 0.1.2 - updated README
+* Updated the README file.
+
+## 0.1.1 - updated README
+* Updated the README file.
+
+## 0.1.0 - First Release
+* Ability to add and remove groups and projects.
+* Right panel toggling for viewing your groups and projects.
+* Collapsing and Expanding groups.
+* Your DB is written in a local package file called projects.json (will think on a better solution in the future).
+* All elements follow the Atom's **Styleguide** package guidelines.

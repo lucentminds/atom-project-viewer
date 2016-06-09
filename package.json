@@ -1,38 +1,26 @@
 {
-  "name": "project-viewer",
-  "main": "./src/index",
-  "version": "0.3.2",
-  "description": "Project viewer/manager that lets you add, edit and remove clients/groups/projects as well as switching between them.",
+  "name": "project-manager",
+  "main": "./lib/main",
+  "version": "0.2.34",
+  "description": "Legacy project-viewer. Project viewer/manager that lets you add and remove groups/projects as well as switching between them.",
   "keywords": [
     "project",
     "manager",
-    "viewer"
+    "viewer",
+    "grouping"
   ],
-  "repository": "https://github.com/jccguimaraes/atom-project-viewer",
+  "repository": "https://github.com/lucentminds/atom-project-manager",
   "license": "MIT",
   "engines": {
-    "atom": ">=1.7.4"
+    "atom": ">=1.0.0"
   },
-  "dependencies": {
-    "atom-space-pen-views": "latest"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "all-contributors-cli": "latest",
-    "cz-conventional-changelog": "latest"
+    "cz-conventional-changelog": "^1.1.4"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "consumedServices": {
-    "status-bar": {
-      "versions": {
-        "^1.0.0": "consumeStatusBar"
-      }
-    }
-  },
-  "scripts": {
-    "generate": "all-contributors generate"
   }
 }
