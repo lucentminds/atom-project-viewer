@@ -1,5 +1,5 @@
 {
-  "name": "project-manager",
+  "name": "lucentminds-atom-project-viewer",
   "main": "./lib/main",
   "version": "0.2.34",
   "description": "Legacy project-viewer. Project viewer/manager that lets you add and remove groups/projects as well as switching between them.",
@@ -9,7 +9,7 @@
     "viewer",
     "grouping"
   ],
-  "repository": "https://github.com/lucentminds/atom-project-manager",
+  "repository": "https://github.com/lucentminds/atom-project-viewer",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0"
